@@ -4,25 +4,26 @@
 4-2
 2 * 2
 8/4
-
 2**4
 
 
 ### But also handles other types of data
 
-# character = collection of characters
-print('hello world!')
-
 # numeric, to make math operations
-print( 4 * 2)
+4 * 2
+
+# character = collection of characters
+"hello world!"
+hello
+
 
 # vector (or collection)
-print( c(1,2,3) )
+c(1,2,3) 
 
 # data frame (table), a collection of vectors
-data.frame(  'name'=c('a','b','c'),
-            'col_1'=c(1,2,3),
-            'col_2'=c(4,5,6))
+data.frame(  "name"=c("a","b","c"),
+             "col_1"=c(1,2,3),
+             "col_2"=c(4,5,6))
 
 ### Variables: can store values/data types
 
@@ -39,30 +40,14 @@ x
 
 # Reading data in R
 
-# Directly from a delimited file online https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/AirPassengers.csv
-ts = read.csv('https://raw.githubusercontent.com/vincentarelbundock/Rdatasets/master/csv/datasets/AirPassengers.csv',row.names = 1)
-head(ts)
+data = read.table('https://raw.githubusercontent.com/rodriguezmDNA/CAG21/main/data/data1.tsv')
 
-# Or from a local file (in your computer)
-absentAtWork = read.csv('Absenteeism_at_work_AAA/Absenteeism_at_work.csv',sep=';')
+dim(data)
+nrow(data)
+ncol(data)
+head(data)
+summary(data)
 
-length(ts)
-dim(ts)
-ncol(ts)
-nrow(ts)
-
-head(ts)
-tail(ts)
-
-
-anscombe1 = read.table('anscombe/data1.tsv')
-anscombe2 = read.table('anscombe/data2.tsv')
-
-dim(anscombe1)
-head(anscombe1)
-
-summary(anscombe1)
-summary(anscombe2)
 
 ### Installing and loading libraries
 # A library is a package or collection of code that performs specific functions on top of base R
@@ -70,22 +55,21 @@ summary(anscombe2)
 library(ggplot2)
 
 
-head(anscombe1)
+head(data)
+
+ggplot() 
 
 ggplot() + 
-  geom_point(data=anscombe1, aes(x=x,y=y))
+  geom_point(data=data, aes(x=x,y=y))
 
 
-
-ansc <- read.delim('anscombe/anscQuartet.tsv',sep='\t')
-
-### Canvas
 ggplot() + 
-  # Type of plot
-  geom_point(data=ansc, aes(x=x,y=y,shape=data,color=data)) + 
-  scale_color_brewer(palette = 'Set1') +
-  xlab('x axis label') +
-  ylab('y axis label') +
-  ggtitle('a descriptive title') + 
-  facet_wrap(data~.,nrow = 2) + 
-  theme_light()
+  geom_point(data=data, aes(x=x,y=y)) +
+  xlab('X axis') + ylab('Y axis')
+
+ggplot() + 
+  geom_point(data=data, aes(x=x,y=y)) +
+  xlab('X axis') + ylab('Y axis') +
+  ggtitle('Relationship between X and Y')
+
+ansc <- read.delim('data/anscQuartet.tsv',sep='\t')

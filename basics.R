@@ -14,6 +14,7 @@ write.table(anscombe3,file = 'anscombe/data3.tsv',sep='\t')
 write.table(anscombe4,file = 'anscombe/data4.tsv',sep='\t')
 
 
+
 ###
 
 
@@ -74,7 +75,7 @@ airquality
 
 ggplot(data=airquality) +
   geom_point(aes(x=Temp,y=Wind)) +
-  geom_smooth(aes(x=Temp,y=Wind),method='lm') +
+  #geom_smooth(aes(x=Temp,y=Wind),method='lm') +
   xlab('Temp (F)') +
   ylab('Wind (mph)') +
   ggtitle('Temperature vs Wind speed')
